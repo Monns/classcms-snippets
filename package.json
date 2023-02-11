@@ -9,6 +9,9 @@
   "categories": [
     "Snippets"
   ],
+  "repository": {
+    "url": "https://github.com/Monns/classcms-snippets"
+},
   "contributes": {
     "snippets": [
       {
