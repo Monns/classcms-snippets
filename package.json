@@ -1,23 +1,31 @@
 {
-  "name": "classcms-snippet",
-  "displayName": "classcms-snippet",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.75.0"
-  },
-  "categories": [
-    "Snippets"
-  ],
-  "repository": {
-    "url": "https://github.com/Monns/classcms-snippets"
-},
-  "contributes": {
-    "snippets": [
-      {
-        "language": "html",
-        "path": "./snippets/classcms.code-snippets"
-      }
-    ]
-  }
+    "name": "classcms-snippet",
+    "displayName": "classcms-snippet",
+    "description": "classcms模板常用代码片段",
+    "keywords": [
+        "classcms",
+        "snippet"
+    ],
+    "publisher": "Monns",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "icon": "icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Monns/classcms-snippets"
+    },
+    "homepage": "https://github.com/Monns/classcms-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "html",
+                "path": "./snippets/classcms.code-snippets"
+            }
+        ]
+    }
 }
