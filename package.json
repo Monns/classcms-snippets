@@ -7,7 +7,7 @@
         "snippet"
     ],
     "publisher": "ie81com",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.75.0"
     },
@@ -24,7 +24,11 @@
         "snippets": [
             {
                 "language": "html",
-                "path": "./snippets/classcms.code-snippets"
+                "path": "./snippets/classcms_base.code-snippets"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/classcms_advanced.code-snippets"
             }
         ]
     }
