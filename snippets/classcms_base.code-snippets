@@ -1,4 +1,55 @@
 {
+	"多项文本框(tags)": {
+		"prefix": "ccc_tags",
+		"description": "当列数为1时,存储格式为: 第一项;第二项;第三项。当列数多余1时,存储格式为:第一项列1|第一项列2;第二项列1|第二项列2",
+		"scope": "html",
+		"body": [
+			"{$tags=explode(;,$duoxiang)}",
+			"{loop $tags as $tag}",
+			"    {if $tag}{$tag}<br>{/if}",
+			"{/loop}",
+			"",
+			"",
+			"{$tags=explode(;,$duoxiang)}",
+			"{loop $tags as $tag}",
+			"    {$columns=explode(\\|,$tag)}",
+			"    第一项:{$columns.0}",
+			"    第二项:{$columns.1}",
+			"    循环输出:",
+			"    {loop $columns as $column}",
+			"        {$column}/",
+			"    {/loop}<br>",
+			"{/loop}"
+		]
+	},
+	"搜索文章": {
+		"prefix": "ccc_search",
+		"description": "1、后台模型中增加模型(模型名为\"搜索\",标识为\"search\",栏目页面增加\"栏目页\")  2、增加模型后,增加搜索栏目(栏目名为\"搜索\",模型为新增的\"搜索\"模型)  3、搜索表单代码(增加到网站显示搜索框的位置):",
+		"scope": "html",
+		"body": [
+			"<form method=\"get\" action=\"{$.搜索栏目的id.link}\">",
+			"    <input type=\"text\" name=\"keyword\" value=\"\"><input type=\"submit\" value=\"搜索\">",
+			"</form>",
+			"{if isset($_GET['keyword']) && !empty($_GET['keyword'])}",
+			"    搜索词:{htmlspecialchars($_GET['keyword'])}<br>",
+			"",
+			"    {$articlelist.modulehash=article}{//搜索article文章模型}",
+			"    {$articlelist.page=page}{//开启分页}",
+			"    {$articlelist.pagesize=10}{//每页显示10条}",
+			"",
+			"    <?php",
+			"    //只搜索标题:",
+			"    $articlelist['where']['title%']=htmlspecialchars($_GET['keyword']);",
+			"    //同时搜索标题和内容字段",
+			"    //$articlelist['where']['1;']=array('title%'=>htmlspecialchars($_GET['keyword']),'content%'=>htmlspecialchars($_GET['keyword']));",
+			"    ?>",
+			"    {$articles=a($articlelist)}",
+			"    {loop $articles as $article}",
+			"        <a href=\"{$article.link}\">{$article.title}</a><br>",
+			"    {/loop}",
+			"{/if}"
+		]
+	},
 	"文章页标题关键词描述": {
 		"prefix": "ccc_tkd_article",
 		"description": "文章页标题关键词描述：如不确定是否存在某个字段,建议先用isset判断",
@@ -32,14 +83,6 @@
 			"?>"
 		]
 	},
-	"日期输出": {
-		"prefix": "ccc_date",
-		"description": "日期输出",
-		"scope": "html",
-		"body": [
-			"{date(Y-m-d H:i:s,$datetime)}"
-		]
-	},
 	"u函数用法": {
 		"prefix": "ccc_u",
 		"description": "U函数具体参数: U($channel,$routehash='',$article=array(),$args=array(),$fullurl=false) $channel:栏目id $routehash:页面标识 $article:文章数组,如array('id'=>1,'title'=>'classcms'),会自动替换掉页面网址(如/channel/($id)/($title).html)中的文章参数 $args:自定义参数数组,如array('page'=>1),会自动替换掉页面网址(如/index_(page).html)中的自定义参数 $fullurl:为true时返回完整的网址(http://+域名+路径)",
@@ -49,7 +92,7 @@
 		]
 	},
 	"串联方法调用": {
-		"prefix": "ccc_app_method_",
+		"prefix": "ccc_app_method_more",
 		"description": "串联方法调用示例：输出当前访客ip字符串的前3个字符",
 		"scope": "html",
 		"body": [
